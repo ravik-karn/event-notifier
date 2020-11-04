@@ -22,5 +22,12 @@ jobs:
           python -m pip install --upgrade pip
           pip install flake8
           if [ -f requirements.txt ]; then pip install -r requirements.txt; fi
-      - name: Run a one-line script
+      - name: Run Notifier
+        env: 
+          API_KEY: ${{secrets.API_KEY}}
+          API_SECRET: ${{secrets.API_SECRET}}
+          FROM_EMAIL: ${{secrets.FROM_EMAIL}}
+          TO_EMAIL: ${{secrets.TO_EMAIL}}
+          SENDER_NAME: ${{secrets.SENDER_NAME}}
+          RECIEVER_NAME: ${{secrets.RECIEVER_NAME}}
         run: cd src && python event_notifier.py  
